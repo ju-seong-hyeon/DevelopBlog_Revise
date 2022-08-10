@@ -7,6 +7,7 @@ import Career1 from './Component/career1';
 import Header from './Component/header';
 import Menubar from './Component/menubar';
 import Main from './Component/main';
+import Calendar from './Component/calendar';
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
 
 export default App;
 /*
+<Calendar/>
+
 function Change_title(){
     var newArray = [...title];
     newArray[0] = '동원 엔터프라이즈 퇴사'

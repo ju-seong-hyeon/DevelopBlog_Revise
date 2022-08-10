@@ -1,14 +1,25 @@
 import React, {useState} from 'react'
 import Career from './career';
 import Career1 from './career';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import moment from 'moment';
 
 function Main(props){
-  let [title, ch_title] = useState(['동원 엔터프라이즈 입사', '프로젝트 1 : 사용자 귀속부서 변경' , '프로젝트 2 : SMS 전송 내역 및 통계 현황', '인턴 프로젝트 발표']);
-  let [carearDate, ch_carearDate] = useState(['2022년 6월 27일 ~', '2022년 7월 4일 ~ 2022년 7월 25일', '2022년 7월 27일 ~ 2022년 8월 3일' , '2022년 8월 3일']);
-
+  let [title, ch_title] = useState(['동원 엔터프라이즈 입사 😀', '프로젝트 1 : 사용자 귀속부서 변경' , '프로젝트 2 : SMS 전송 내역 및 통계 현황', '인턴 프로젝트 발표']);
+  let [carearDate, ch_carearDate] = useState(['2022년 6월 27일 ~', '2022년 7월 4일 ~ 2022년 7월 25일', '2022년 7월 27일 ~ 2022년 8월 4일' , '2022년 8월 3일']);
+  const [value, onChange] = useState(new Date());
   let [title1, ch_title1] = useState(['', '', '']);
   let [carearDate1, ch_carearDate1] = useState(['', '', '']);
   const com = 1;
+  const marks = [
+    "27-06-2022",
+    "04-07-2022",
+    "25-07-2022",
+    "27-07-2022",
+    "04-08-2022",
+    "03-08-2022"
+  ];
 
   function ch_com1(com){
       com = 1;
@@ -25,7 +36,7 @@ function Main(props){
       ch_carearDate1(newArray1);
 
       var newArray2 = [...title];
-      newArray2[0] = '동원 엔터프라이즈 입사'
+      newArray2[0] = '동원 엔터프라이즈 입사  😀'
       newArray2[1] = '프로젝트 1 : 사용자 귀속부서 변경'
       newArray2[2] = '프로젝트 2 : SMS 전송 내역 및 통계 현황'
       newArray2[3] = '인턴 프로젝트 발표'
@@ -58,7 +69,7 @@ function Main(props){
       ch_carearDate(newArray1);
 
       var newArray3 = [...title1];
-      newArray3[0] = '전자통신연구원 입사'
+      newArray3[0] = '전자통신연구원 입사 😀'
       newArray3[1] = '프로젝트 : 머신러닝 기반 소방도면기호 인식 알고리즘 개발'
       newArray3[2] = '인턴 프로젝트 발표'
       ch_title1(newArray3);
@@ -81,6 +92,16 @@ function Main(props){
        <Career co = {com} value1 = {title[1]} date1 = {carearDate[1]} value = {title1[1]} date = {carearDate1[1]} param = {1}/>
        <Career co = {com} value1 = {title[2]} date1 = {carearDate[2]} value = {title1[2]} date = {carearDate1[2]} param = {1}/>
        <Career co = {com} value1 = {title[3]} date1 = {carearDate[3]} param = {1}/>
+
+       <div className = 'cal'>
+           <Calendar calendarType= {"US"} onChange = {onChange} value = {value}
+           tileClassName={({ date, view }) => {
+                     if (marks.find((x) => x === moment(date).format("DD-MM-YYYY"))) {
+                       return "highlight";
+                     }}}
+
+           />
+       </div>
 
     </div>
   )
