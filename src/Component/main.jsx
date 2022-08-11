@@ -8,9 +8,10 @@ import moment from 'moment';
 function Main(props){
   let [title, ch_title] = useState(['동원 엔터프라이즈 입사 😀', '프로젝트 1 : 사용자 귀속부서 변경' , '프로젝트 2 : SMS 전송 내역 및 통계 현황', '인턴 프로젝트 발표']);
   let [carearDate, ch_carearDate] = useState(['2022년 6월 27일 ~', '2022년 7월 4일 ~ 2022년 7월 25일', '2022년 7월 27일 ~ 2022년 8월 4일' , '2022년 8월 3일']);
-  const [value, onChange] = useState(new Date());
+  const [value, onChange] = useState();
   let [title1, ch_title1] = useState(['', '', '']);
   let [carearDate1, ch_carearDate1] = useState(['', '', '']);
+
   const com = 1;
   const marks = [
     "27-06-2022",
@@ -18,7 +19,12 @@ function Main(props){
     "25-07-2022",
     "27-07-2022",
     "04-08-2022",
-    "03-08-2022"
+    "03-08-2022",
+    "01-07-2020",
+    "31-08-2020",
+    "06-07-2020",
+    "26-08-2020",
+    "27-08-2020",
   ];
 
   function ch_com1(com){
@@ -84,9 +90,10 @@ function Main(props){
     }
 
   return(
-    <div>
-       <button className = 'myButton' onClick ={ () => {ch_com1()}}> 동원 엔터프라이즈</button>
-       <button className = 'myButton' onClick ={ () => {ch_com2()}}> 전자통신연구원   </button>
+    <div className = "gray-nav">
+       <button className = 'myButton' onClick ={() => {ch_com1()}}> 동원 엔터프라이즈</button>
+       <button className = 'myButton' onClick ={() => {ch_com2()}}> 전자통신연구원   </button>
+       <button className = 'myButton' onClick ={() => window.open('https://github.com/ju-seong-hyeon', '_blank')}> 깃허브 </button>
 
        <Career co = {com} value1 = {title[0]} date1 = {carearDate[0]} value = {title1[0]} date = {carearDate1[0]} param = {0}/>
        <Career co = {com} value1 = {title[1]} date1 = {carearDate[1]} value = {title1[1]} date = {carearDate1[1]} param = {1}/>
@@ -94,22 +101,38 @@ function Main(props){
        <Career co = {com} value1 = {title[3]} date1 = {carearDate[3]} param = {1}/>
 
        <div className = 'cal'>
-           <Calendar calendarType= {"US"} onChange = {onChange} value = {value}
-           tileClassName={({ date, view }) => {
-                     if (marks.find((x) => x === moment(date).format("DD-MM-YYYY"))) {
-                       return "highlight";
-                     }}}
-
+           <Calendar calendarType= {"US"} onChange = {onChange} value = {value} defaultValue={new Date()}
+           minDate={new Date(2019, 12, 1)} maxDate = {new Date(2030, 11, 31)}
+           formatDay={(locale, date) => moment(date).format("DD")}
+            tileContent={({ date, view }) => {
+                let html = [];
+                if (marks.find((x) => x === moment(date).format("DD-MM-YYYY"))) {
+                  html.push(<div className="dot"></div>);
+                }
+                return (
+                  <>
+                    <div className="flex justify-center items-center absoluteDiv">
+                      {html}
+                    </div>
+                  </>
+                );
+             }}
            />
        </div>
 
     </div>
+
   )
 }
 
 export default Main;
 
 /*
+
+<Link to= "https://github.com/ju-seong-hyeon">
+       <button className = 'myButton'> 깃허브   </button>
+       </Link>
+
 <Career1 value = {title1[0]} date = {carearDate1[0]} param = {0}/>
        <Career1 value = {title1[1]} date = {carearDate1[1]} param = {1}/>
        <Career1 value = {title1[2]} date = {carearDate1[2]} param = {1}/>

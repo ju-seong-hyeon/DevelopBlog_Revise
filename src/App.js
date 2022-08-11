@@ -13,7 +13,7 @@ function App() {
 
 
   return (
-    <div>
+    <div className = "gray-nav">
         <Header/>
         <Main/>
     </div>
