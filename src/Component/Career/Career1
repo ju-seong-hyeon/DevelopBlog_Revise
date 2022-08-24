@@ -1,0 +1,16 @@
+import React from 'react'
+
+function Career1(){
+    const recode = [
+    ]
+    return(
+        <div className = 'list1'>
+            <h3> 전자통신연구원 </h3>
+            <p font size = "3"> '2020년 7월 1일 ~ 2020년 8월 31일' </p>
+        </div>
+    )
+}
+
+
+export default Career1;
+
